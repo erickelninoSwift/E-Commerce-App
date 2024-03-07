@@ -1,41 +1,62 @@
+import { useEffect } from "react";
 import "./categories.styles.scss";
 
 const App = () => {
   const categories = [
     {
       id: 1,
-      title: "Mens",
-      ImageUrl: "/",
+      title: "hats",
+      imageUrl: "https://i.ibb.co/cvpntL1/hats.png",
     },
     {
       id: 2,
-      title: "Womens",
-      ImageUrl: "/",
+      title: "jackets",
+      imageUrl: "https://i.ibb.co/px2tCc3/jackets.png",
     },
     {
       id: 3,
-      title: "Jackets",
-      ImageUrl: "/",
+      title: "sneakers",
+      imageUrl: "https://i.ibb.co/0jqHpnp/sneakers.png",
     },
     {
       id: 4,
-      title: "Sneakers",
-      ImageUrl: "/",
+      title: "womens",
+      imageUrl: "https://i.ibb.co/GCCdy8t/womens.png",
     },
     {
       id: 5,
-      title: "Hats",
-      ImageUrl: "/",
+      title: "mens",
+      imageUrl: "https://i.ibb.co/R70vBrQ/men.png",
     },
   ];
+
+  // const getAlldata = async () => {
+  //   try {
+  //     const response = await fetch(
+  //       "https://fakestoreapi.com/products/category/jewelery"
+  //     );
+  //     const data = await response.json();
+
+  //     console.log(data);
+  //   } catch (error) {
+  //     console.log("data fetched failed", error);
+  //   }
+  // };
+
+  // useEffect(() => {
+  //   getAlldata();
+  // }, []);
   return (
     <div className="categories-container">
-      {categories.map((category) => {
+      {categories.map(({ title, imageUrl, id }) => {
         return (
-          <div key={category.id} className="category-container">
-            <img src={category.ImageUrl} alt="category-image" />
+          <div key={id} className="category-container">
+            <div
+              className="background-image"
+              style={{ backgroundImage: `url(${imageUrl})` }}
+            ></div>
             <div className="category-body-container">
-              <h2>{category.title}</h2>
+              <h2>{title}</h2>
               <p>Shop Now</p>
             </div>
           </div>
