@@ -10,20 +10,3 @@ const App = () => {
 };
 
 export default App;
-
-// const getAlldata = async () => {
-//   try {
-//     const response = await fetch(
-//       "https://fakestoreapi.com/products/category/jewelery"
-//     );
-//     const data = await response.json();
-
-//     console.log(data);
-//   } catch (error) {
-//     console.log("data fetched failed", error);
-//   }
-// };
-
-// useEffect(() => {
-//   getAlldata();
-// }, []);
