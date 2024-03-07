@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import "./categories.styles.scss";
+import Category_item from "./components/category-item/Category_item.component";
 
 const App = () => {
   const categories = [
@@ -48,19 +49,9 @@ const App = () => {
   // }, []);
   return (
     <div className="categories-container">
-      {categories.map(({ title, imageUrl, id }) => {
-        return (
-          <div key={id} className="category-container">
-            <div
-              className="background-image"
-              style={{ backgroundImage: `url(${imageUrl})` }}
-            ></div>
-            <div className="category-body-container">
-              <h2>{title}</h2>
-              <p>Shop Now</p>
-            </div>
-          </div>
-        );
+      {categories.map((myCategory) => {
+        const { id } = myCategory;
+        return <Category_item key={id} category={myCategory} />;
       })}
     </div>
   );
