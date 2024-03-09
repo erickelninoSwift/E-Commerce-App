@@ -1,23 +1,23 @@
 import { Outlet, NavLink } from "react-router-dom";
 import "./navigation.styles.scss";
-
+// import logo from "../../assets/logo192.png";
+import logo from "../../assets/crown.svg";
 const Navigation = () => {
   return (
     <>
       <div className="navigation">
         <NavLink className="logo-container" to={"/"}>
           <div>
-            <img
-              src="../../assets/logo192.png"
-              style={{ objectFit: "cover" }}
-            />
+            <img src={logo} alt="logo" className="logo" />
           </div>
         </NavLink>
+
         <div className="nav-links-container">
-          <NavLink className="nav-link" to={"/"}>
-            HOME
-          </NavLink>
-          <NavLink className="nav-link" to={"/shop"}>
+          <NavLink
+            className="nav-link"
+            to={"/shop"}
+            style={{ fontSize: "20px" }}
+          >
             SHOP
           </NavLink>
         </div>
