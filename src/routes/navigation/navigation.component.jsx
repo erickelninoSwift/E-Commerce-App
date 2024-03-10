@@ -8,7 +8,12 @@ const Navigation = () => {
       <div className="navigation">
         <NavLink className="logo-container" to={"/"}>
           <div>
-            <img src={logo} alt="logo" className="logo" />
+            <img
+              src={logo}
+              alt="logo"
+              className="logo"
+              style={{ objectFit: "fill" }}
+            />
           </div>
         </NavLink>
 
