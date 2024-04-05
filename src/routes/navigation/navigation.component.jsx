@@ -18,12 +18,23 @@ const Navigation = () => {
         </NavLink>
 
         <div className="nav-links-container">
+          <NavLink className="nav-link" to={"/"} style={{ fontSize: "20px" }}>
+            HOME
+          </NavLink>
           <NavLink
             className="nav-link"
             to={"/shop"}
             style={{ fontSize: "20px" }}
           >
             SHOP
+          </NavLink>
+
+          <NavLink
+            className="nav-link"
+            to={"/signin"}
+            style={{ fontSize: "20px" }}
+          >
+            LOGIN
           </NavLink>
         </div>
       </div>
