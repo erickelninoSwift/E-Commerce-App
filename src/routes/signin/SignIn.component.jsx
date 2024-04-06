@@ -8,6 +8,7 @@ import { createUserDocumentFromAuth } from "./firebase.js";
 import { getRedirectResult } from "firebase/auth";
 import { useEffect } from "react";
 import SignUpForm from "../../components/signup/SignUpForm.jsx";
+import SignUp from "../../components/signup/SignUp.jsx";
 const SignIn = () => {
   const loginUser = async () => {
     const { user } = await signInWithGooglePopup();
@@ -28,6 +29,7 @@ const SignIn = () => {
   return (
     <div>
       <SignUpForm />
+      {/* <SignUp /> */}
       <button onClick={loginUser} style={{ width: "40%" }}>
         Sign in with Google
       </button>
