@@ -6,7 +6,9 @@ const Navigation = () => {
     <>
       <div className="navbar bg-base-300">
         <div className="flex-1">
-          <a className="btn btn-ghost text-xl">J-SHOP</a>
+          <NavLink className="btn btn-ghost text-xl" to={"/"}>
+            J-SHOP
+          </NavLink>
         </div>
         <div className="flex-none">
           <ul className="menu menu-horizontal px-1">
