@@ -5,6 +5,7 @@ import {
   signInWithRedirect,
   signInWithPopup,
   GoogleAuthProvider,
+  createUserWithEmailAndPassword,
 } from "firebase/auth";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -43,6 +44,7 @@ export const signInWithGoogleRedirect = () => {
 export const jackpotDB = getFirestore();
 
 export const createUserDocumentFromAuth = async (userAuth) => {
+  if (!userAuth) return;
   const userDocRef = doc(jackpotDB, "users", userAuth.uid);
   const userSnapshot = await getDoc(userDocRef);
   const { displayName, email } = userAuth;
@@ -60,4 +62,19 @@ export const createUserDocumentFromAuth = async (userAuth) => {
   }
 
   return userDocRef;
+};
+
+export const createAuthUserWithEmailPassword = async (
+  email,
+  passwordr,
+  displayName
+) => {
+  if (!email || !passwordr) return;
+
+  return await createUserWithEmailAndPassword(
+    auth,
+    email,
+    passwordr,
+    displayName
+  );
 };
