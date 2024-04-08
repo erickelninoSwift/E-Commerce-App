@@ -6,7 +6,7 @@ import {
   createUserDocumentFromAuth,
 } from "../../routes/signin/firebase";
 
-const Signupformv2 = ({ loginUser }) => {
+const Signupformv2 = ({ loginUser, loginPage, islogin }) => {
   const [email, setEmail] = useState("");
   const [Password, setPassword] = useState("");
   const [RePassword, setRePassword] = useState("");
@@ -59,6 +59,7 @@ const Signupformv2 = ({ loginUser }) => {
             </div>
 
             <div className="md:w-8/12 lg:ms-6 lg:w-5/12">
+              <h2 className="text-3xl mb-5">Register now !</h2>
               <form onSubmit={(e) => handleSubmitButton(e)}>
                 <div className="relative mb-6" data-twe-input-wrapper-init>
                   <input
@@ -191,6 +192,15 @@ const Signupformv2 = ({ loginUser }) => {
                   </button>
                 </div>
               </form>
+              <p className="mb-0 mt-2 pt-1 text-sm font-semibold">
+                You do have an account?
+                <a
+                  className="text-danger cursor-pointer transition duration-150 ease-in-out hover:text-danger-600 focus:text-danger-600 active:text-danger-700"
+                  onClick={() => loginPage(!islogin)}
+                >
+                  Login
+                </a>
+              </p>
             </div>
           </div>
         </div>

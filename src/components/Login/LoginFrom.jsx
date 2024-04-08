@@ -1,6 +1,13 @@
 import React from "react";
+import { useState } from "react";
+const LoginFrom = ({ loginPage, islogin }) => {
+  const [username, setUsername] = useState("");
+  const [userPassword, setUserPassword] = useState("");
 
-const LoginFrom = () => {
+  const handleLoginForm = async (e) => {
+    e.preventDefault();
+    console.log("We are trying to login");
+  };
   return (
     <>
       <div className="w-full flex justify-center">
@@ -17,12 +24,14 @@ const LoginFrom = () => {
 
               <div className="md:w-8/12 lg:ms-6 lg:w-5/12">
                 <h1 className="text-3xl mb-5">Login now !</h1>
-                <form>
+                <form onSubmit={(e) => handleLoginForm(e)}>
                   <div className="relative mb-6" data-twe-input-wrapper-init>
                     <input
                       type="text"
                       className="peer block min-h-[auto] w-full rounded border-0 bg-transparent px-3 py-[0.32rem] leading-[2.15] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 peer-focus:text-primary data-[twe-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-white dark:placeholder:text-neutral-300 dark:autofill:shadow-autofill dark:peer-focus:text-primary [&:not([data-twe-input-placeholder-active])]:placeholder:opacity-0"
                       placeholder="Email address"
+                      value={username}
+                      onChange={(e) => setUsername(e.target.value)}
                     />
                     <label
                       htmlFor="exampleFormControlInput3"
@@ -37,6 +46,8 @@ const LoginFrom = () => {
                       type="password"
                       className="peer block min-h-[auto] w-full rounded border-0 bg-transparent px-3 py-[0.32rem] leading-[2.15] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 peer-focus:text-primary data-[twe-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-white dark:placeholder:text-neutral-300 dark:autofill:shadow-autofill dark:peer-focus:text-primary [&:not([data-twe-input-placeholder-active])]:placeholder:opacity-0"
                       placeholder="Password"
+                      value={userPassword}
+                      onChange={(e) => setUserPassword(e.target.value)}
                     />
                     <label
                       htmlFor="exampleFormControlInput33"
@@ -121,6 +132,15 @@ const LoginFrom = () => {
                     Continue with X
                   </a>
                 </form>
+                <p className="mb-0 mt-2 pt-1 text-sm font-semibold">
+                  Don't have an account?
+                  <a
+                    className="text-danger cursor-pointer transition duration-150 ease-in-out hover:text-danger-600 focus:text-danger-600 active:text-danger-700"
+                    onClick={() => loginPage(!islogin)}
+                  >
+                    Register
+                  </a>
+                </p>
               </div>
             </div>
           </div>

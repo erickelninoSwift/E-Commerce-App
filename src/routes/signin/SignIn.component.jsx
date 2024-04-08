@@ -9,7 +9,9 @@ import { createUserDocumentFromAuth } from "./firebase.js";
 import { getRedirectResult } from "firebase/auth";
 import { useEffect } from "react";
 import Signupformv2 from "../../components/signup/Signupformv2.jsx";
+import { useState } from "react";
 const SignIn = () => {
+  const [login, setLogin] = useState(true);
   const loginUser = async () => {
     const { user } = await signInWithGooglePopup();
     const userDocReference = await createUserDocumentFromAuth(user);
@@ -28,11 +30,15 @@ const SignIn = () => {
   }, []);
   return (
     <div>
-      {/* <Signupformv2 loginUser={loginUser} /> */}
-      <LoginFrom />
-      <button onClick={loginUser} style={{ width: "40%" }}>
-        Sign in with Google
-      </button>
+      {login ? (
+        <LoginFrom loginPage={setLogin} islogin={login} />
+      ) : (
+        <Signupformv2
+          loginUser={loginUser}
+          loginPage={setLogin}
+          islogin={login}
+        />
+      )}
     </div>
   );
 };
