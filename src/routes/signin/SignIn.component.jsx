@@ -1,4 +1,5 @@
 import React from "react";
+import LoginFrom from "../../components/Login/LoginFrom.jsx";
 import {
   signInWithGooglePopup,
   signInWithGoogleRedirect,
@@ -27,7 +28,8 @@ const SignIn = () => {
   }, []);
   return (
     <div>
-      <Signupformv2 loginUser={loginUser} />
+      {/* <Signupformv2 loginUser={loginUser} /> */}
+      <LoginFrom />
       <button onClick={loginUser} style={{ width: "40%" }}>
         Sign in with Google
       </button>

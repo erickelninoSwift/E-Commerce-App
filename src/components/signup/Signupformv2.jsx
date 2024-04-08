@@ -10,12 +10,11 @@ const Signupformv2 = ({ loginUser }) => {
   const [email, setEmail] = useState("");
   const [Password, setPassword] = useState("");
   const [RePassword, setRePassword] = useState("");
-  const [displayName, setDisplayname] = useState("");
+  const [displayN, setDisplayname] = useState("");
 
   const handleSubmitButton = async (e) => {
     e.preventDefault();
     const user = {
-      displayName,
       email,
       Password,
 
@@ -28,12 +27,17 @@ const Signupformv2 = ({ loginUser }) => {
     try {
       const userAuthData = await createAuthUserWithEmailPassword(
         user.email,
-        user.Password,
-        user.displayName
+        user.Password
       );
 
-      const userRef = await createUserDocumentFromAuth(userAuthData.user);
-      console.log(userRef);
+      const userRef = await createUserDocumentFromAuth(userAuthData.user, {
+        displayName: displayN,
+      });
+
+      setEmail("");
+      setDisplayname("");
+      setPassword("");
+      setRePassword("");
     } catch (error) {
       console.log(`Error while registering : ${error}`);
     }
@@ -62,7 +66,7 @@ const Signupformv2 = ({ loginUser }) => {
                     className="peer block min-h-[auto] w-full rounded border-0 bg-transparent px-3 py-[0.32rem] leading-[2.15] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 peer-focus:text-primary data-[twe-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-white dark:placeholder:text-neutral-300 dark:autofill:shadow-autofill dark:peer-focus:text-primary [&:not([data-twe-input-placeholder-active])]:placeholder:opacity-0"
                     // id="exampleFormControlInput3"
                     placeholder="Display Name"
-                    value={displayName}
+                    value={displayN}
                     onChange={(e) => setDisplayname(e.target.value)}
                   />
                   <label
