@@ -1,5 +1,7 @@
 import React from "react";
 import { useState } from "react";
+import FromInput from "./FromInput";
+
 const LoginFrom = ({ loginPage, islogin }) => {
   const [username, setUsername] = useState("");
   const [userPassword, setUserPassword] = useState("");
@@ -25,37 +27,17 @@ const LoginFrom = ({ loginPage, islogin }) => {
               <div className="md:w-8/12 lg:ms-6 lg:w-5/12">
                 <h1 className="text-3xl mb-5">Login now !</h1>
                 <form onSubmit={(e) => handleLoginForm(e)}>
-                  <div className="relative mb-6" data-twe-input-wrapper-init>
-                    <input
-                      type="text"
-                      className="peer block min-h-[auto] w-full rounded border-0 bg-transparent px-3 py-[0.32rem] leading-[2.15] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 peer-focus:text-primary data-[twe-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-white dark:placeholder:text-neutral-300 dark:autofill:shadow-autofill dark:peer-focus:text-primary [&:not([data-twe-input-placeholder-active])]:placeholder:opacity-0"
-                      placeholder="Email address"
-                      value={username}
-                      onChange={(e) => setUsername(e.target.value)}
-                    />
-                    <label
-                      htmlFor="exampleFormControlInput3"
-                      className="pointer-events-none absolute left-3 top-0 mb-0 max-w-[90%] origin-[0_0] truncate pt-[0.37rem] leading-[2.15] text-neutral-500 transition-all duration-200 ease-out peer-focus:-translate-y-[1.15rem] peer-focus:scale-[0.8] peer-focus:text-primary peer-data-[twe-input-state-active]:-translate-y-[1.15rem] peer-data-[twe-input-state-active]:scale-[0.8] motion-reduce:transition-none dark:text-neutral-400 dark:peer-focus:text-primary"
-                    >
-                      Email address
-                    </label>
-                  </div>
+                  <FromInput
+                    inpotField={username}
+                    label={"Email address"}
+                    setField={setUsername}
+                  />
 
-                  <div className="relative mb-6" data-twe-input-wrapper-init>
-                    <input
-                      type="password"
-                      className="peer block min-h-[auto] w-full rounded border-0 bg-transparent px-3 py-[0.32rem] leading-[2.15] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 peer-focus:text-primary data-[twe-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-white dark:placeholder:text-neutral-300 dark:autofill:shadow-autofill dark:peer-focus:text-primary [&:not([data-twe-input-placeholder-active])]:placeholder:opacity-0"
-                      placeholder="Password"
-                      value={userPassword}
-                      onChange={(e) => setUserPassword(e.target.value)}
-                    />
-                    <label
-                      htmlFor="exampleFormControlInput33"
-                      className="pointer-events-none absolute left-3 top-0 mb-0 max-w-[90%] origin-[0_0] truncate pt-[0.37rem] leading-[2.15] text-neutral-500 transition-all duration-200 ease-out peer-focus:-translate-y-[1.15rem] peer-focus:scale-[0.8] peer-focus:text-primary peer-data-[twe-input-state-active]:-translate-y-[1.15rem] peer-data-[twe-input-state-active]:scale-[0.8] motion-reduce:transition-none dark:text-neutral-400 dark:peer-focus:text-primary"
-                    >
-                      Password
-                    </label>
-                  </div>
+                  <FromInput
+                    inpotField={userPassword}
+                    label={" Password"}
+                    setField={setUserPassword}
+                  />
 
                   <div className="mb-6 flex items-center justify-between">
                     <div className="mb-[0.125rem] block min-h-[1.5rem] ps-[1.5rem]">
