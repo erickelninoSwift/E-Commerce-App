@@ -95,7 +95,10 @@ const Signupformv2 = ({ loginUser, loginPage, islogin }) => {
                     OR
                   </p>
                 </div>
-                <GoogleButton loginUserwithGoogle={loginUser} />
+                <GoogleButton
+                  loginUserwithGoogle={loginUser}
+                  message={"REGISTER WITH GOOGLE"}
+                />
               </form>
               <AuthChoice
                 message={"You do have an account?"}

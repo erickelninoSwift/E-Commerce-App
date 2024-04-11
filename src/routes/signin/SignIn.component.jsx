@@ -31,7 +31,7 @@ const SignIn = () => {
   return (
     <div>
       {login ? (
-        <LoginFrom loginPage={setLogin} islogin={login} />
+        <LoginFrom loginPage={setLogin} loginUser={loginUser} islogin={login} />
       ) : (
         <Signupformv2
           loginUser={loginUser}

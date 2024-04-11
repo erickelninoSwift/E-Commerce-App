@@ -3,7 +3,8 @@ import { useState } from "react";
 import FromInput from "./FromInput";
 import { AuthChoice } from "./AuthChoice";
 import SignUpImage from "../signup/SignUpImage";
-const LoginFrom = ({ loginPage, islogin }) => {
+import GoogleButton from "../GoogleButton/GoogleButton";
+const LoginFrom = ({ loginPage, islogin, loginUser }) => {
   const [username, setUsername] = useState("");
   const [userPassword, setUserPassword] = useState("");
 
@@ -47,25 +48,10 @@ const LoginFrom = ({ loginPage, islogin }) => {
                       OR
                     </p>
                   </div>
-
-                  <a
-                    className="mb-3 flex w-full items-center justify-center rounded bg-primary px-7 pb-2.5 pt-3 text-center text-sm font-medium uppercase leading-normal text-white shadow-primary-3 transition duration-150 ease-in-out hover:bg-primary-accent-300 hover:shadow-primary-2 focus:bg-primary-accent-300 focus:shadow-primary-2 focus:outline-none focus:ring-0 active:bg-primary-600 active:shadow-primary-2 dark:shadow-black/30 dark:hover:shadow-dark-strong dark:focus:shadow-dark-strong dark:active:shadow-dark-strong"
-                    style={{ backgroundColor: "#3b5998" }}
-                    href="#!"
-                    role="button"
-                    data-twe-ripple-init
-                    data-twe-ripple-color="light"
-                  >
-                    <span className="me-2 fill-white [&>svg]:mx-auto [&>svg]:h-3.5 [&>svg]:w-3.5">
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        viewBox="0 0 320 512"
-                      >
-                        <path d="M80 299.3V512H196V299.3h86.5l18-97.8H196V166.9c0-51.7 20.3-71.5 72.7-71.5c16.3 0 29.4 .4 37 1.2V7.9C291.4 4 256.4 0 236.2 0C129.3 0 80 50.5 80 159.4v42.1H14v97.8H80z" />
-                      </svg>
-                    </span>
-                    Continue with Google
-                  </a>
+                  <GoogleButton
+                    loginUserwithGoogle={loginUser}
+                    message={"CONTINUE WITH GOOGLE"}
+                  />
                 </form>
 
                 <AuthChoice
