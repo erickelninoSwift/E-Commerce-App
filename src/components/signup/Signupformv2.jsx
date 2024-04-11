@@ -5,6 +5,7 @@ import {
   createAuthUserWithEmailPassword,
   createUserDocumentFromAuth,
 } from "../../routes/signin/firebase";
+import FromInput from "../Login/FromInput";
 
 const Signupformv2 = ({ loginUser, loginPage, islogin }) => {
   const [email, setEmail] = useState("");
@@ -61,72 +62,29 @@ const Signupformv2 = ({ loginUser, loginPage, islogin }) => {
             <div className="md:w-8/12 lg:ms-6 lg:w-5/12">
               <h2 className="text-3xl mb-5">Register now !</h2>
               <form onSubmit={(e) => handleSubmitButton(e)}>
-                <div className="relative mb-6" data-twe-input-wrapper-init>
-                  <input
-                    type="text"
-                    className="peer block min-h-[auto] w-full rounded border-0 bg-transparent px-3 py-[0.32rem] leading-[2.15] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 peer-focus:text-primary data-[twe-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-white dark:placeholder:text-neutral-300 dark:autofill:shadow-autofill dark:peer-focus:text-primary [&:not([data-twe-input-placeholder-active])]:placeholder:opacity-0"
-                    // id="exampleFormControlInput3"
-                    placeholder="Display Name"
-                    value={displayN}
-                    onChange={(e) => setDisplayname(e.target.value)}
-                  />
-                  <label
-                    htmlFor="exampleFormControlInput3"
-                    className="pointer-events-none absolute left-3 top-0 mb-0 max-w-[90%] origin-[0_0] truncate pt-[0.37rem] leading-[2.15] text-neutral-500 transition-all duration-200 ease-out peer-focus:-translate-y-[1.15rem] peer-focus:scale-[0.8] peer-focus:text-primary peer-data-[twe-input-state-active]:-translate-y-[1.15rem] peer-data-[twe-input-state-active]:scale-[0.8] motion-reduce:transition-none dark:text-neutral-400 dark:peer-focus:text-primary"
-                  >
-                    Display Name
-                  </label>
-                </div>
-                <div className="relative mb-6" data-twe-input-wrapper-init>
-                  <input
-                    type="text"
-                    className="peer block min-h-[auto] w-full rounded border-0 bg-transparent px-3 py-[0.32rem] leading-[2.15] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 peer-focus:text-primary data-[twe-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-white dark:placeholder:text-neutral-300 dark:autofill:shadow-autofill dark:peer-focus:text-primary [&:not([data-twe-input-placeholder-active])]:placeholder:opacity-0"
-                    // id  ="exampleFormControlInput3"
-                    placeholder="Email address"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                  />
-                  <label
-                    htmlFor="exampleFormControlInput3"
-                    className="pointer-events-none absolute left-3 top-0 mb-0 max-w-[90%] origin-[0_0] truncate pt-[0.37rem] leading-[2.15] text-neutral-500 transition-all duration-200 ease-out peer-focus:-translate-y-[1.15rem] peer-focus:scale-[0.8] peer-focus:text-primary peer-data-[twe-input-state-active]:-translate-y-[1.15rem] peer-data-[twe-input-state-active]:scale-[0.8] motion-reduce:transition-none dark:text-neutral-400 dark:peer-focus:text-primary"
-                  >
-                    Email address
-                  </label>
-                </div>
+                <FromInput
+                  inpotField={displayN}
+                  label={"Display Name"}
+                  setField={setDisplayname}
+                />
 
-                <div className="relative mb-6" data-twe-input-wrapper-init>
-                  <input
-                    type="password"
-                    className="peer block min-h-[auto] w-full rounded border-0 bg-transparent px-3 py-[0.32rem] leading-[2.15] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 peer-focus:text-primary data-[twe-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-white dark:placeholder:text-neutral-300 dark:autofill:shadow-autofill dark:peer-focus:text-primary [&:not([data-twe-input-placeholder-active])]:placeholder:opacity-0"
-                    // id="exampleFormControlInput33"
-                    placeholder="Password"
-                    value={Password}
-                    onChange={(e) => setPassword(e.target.value)}
-                  />
-                  <label
-                    htmlFor="exampleFormControlInput33"
-                    className="pointer-events-none absolute left-3 top-0 mb-0 max-w-[90%] origin-[0_0] truncate pt-[0.37rem] leading-[2.15] text-neutral-500 transition-all duration-200 ease-out peer-focus:-translate-y-[1.15rem] peer-focus:scale-[0.8] peer-focus:text-primary peer-data-[twe-input-state-active]:-translate-y-[1.15rem] peer-data-[twe-input-state-active]:scale-[0.8] motion-reduce:transition-none dark:text-neutral-400 dark:peer-focus:text-primary"
-                  >
-                    Password
-                  </label>
-                </div>
+                <FromInput
+                  inpotField={email}
+                  label={"Email address"}
+                  setField={setEmail}
+                />
 
-                <div className="relative mb-6" data-twe-input-wrapper-init>
-                  <input
-                    type="password"
-                    className="peer block min-h-[auto] w-full rounded border-0 bg-transparent px-3 py-[0.32rem] leading-[2.15] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 peer-focus:text-primary data-[twe-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-white dark:placeholder:text-neutral-300 dark:autofill:shadow-autofill dark:peer-focus:text-primary [&:not([data-twe-input-placeholder-active])]:placeholder:opacity-0"
-                    // id="exampleFormControlInput33"
-                    placeholder="Re-Password"
-                    value={RePassword}
-                    onChange={(e) => setRePassword(e.target.value)}
-                  />
-                  <label
-                    htmlFor="exampleFormControlInput33"
-                    className="pointer-events-none absolute left-3 top-0 mb-0 max-w-[90%] origin-[0_0] truncate pt-[0.37rem] leading-[2.15] text-neutral-500 transition-all duration-200 ease-out peer-focus:-translate-y-[1.15rem] peer-focus:scale-[0.8] peer-focus:text-primary peer-data-[twe-input-state-active]:-translate-y-[1.15rem] peer-data-[twe-input-state-active]:scale-[0.8] motion-reduce:transition-none dark:text-neutral-400 dark:peer-focus:text-primary"
-                  >
-                    Enter Password Again
-                  </label>
-                </div>
+                <FromInput
+                  inpotField={Password}
+                  label={"Password"}
+                  setField={setPassword}
+                />
+
+                <FromInput
+                  inpotField={RePassword}
+                  label={"Enter Password Again"}
+                  setField={setRePassword}
+                />
 
                 <div className="mb-6 flex items-center justify-between">
                   <a
