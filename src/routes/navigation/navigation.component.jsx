@@ -1,7 +1,22 @@
 import { Outlet, NavLink } from "react-router-dom";
 import "./navigation.styles.scss";
+import { useContext, useEffect } from "react";
+import { UserContext } from "../../contex/UserContext";
+import userICon from "../../assets/mipicture.jpeg";
+import { signOutUserAuth } from "../signin/firebase";
 // import logo from "../../assets/logo192.png";
 const Navigation = () => {
+  const { currentUser, setCurrentUser } = useContext(UserContext);
+
+  const signOutHandler = async () => {
+    try {
+      await signOutUserAuth();
+      setCurrentUser(null);
+    } catch (error) {
+      console.log(`Error was found while signing out ${error}`);
+    }
+  };
+  useEffect(() => {}, [currentUser]);
   return (
     <>
       <div className="navbar bg-base-300">
@@ -18,9 +33,13 @@ const Navigation = () => {
             <li>
               <NavLink to={"/shop"}>SHOP</NavLink>
             </li>
-            <li>
-              <NavLink to={"/signin"}>LOGIN</NavLink>
-            </li>
+            {currentUser ? (
+              ""
+            ) : (
+              <li>
+                <NavLink to={"/signin"}>LOGIN</NavLink>
+              </li>
+            )}
           </ul>
           {/* <div className="form-control">
             <input
@@ -70,38 +89,37 @@ const Navigation = () => {
               </div>
             </div>
           </div>
-          {/* <div className="dropdown dropdown-end">
-            <div
-              tabIndex={0}
-              role="button"
-              className="btn btn-ghost btn-circle avatar"
-            >
-              <div className="w-10 rounded-full">
-                <img
-                  alt="Tailwind CSS Navbar component"
-                  src="https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg"
-                />
+          {currentUser && (
+            <div className="dropdown dropdown-end">
+              <div
+                tabIndex={0}
+                role="button"
+                className="btn btn-ghost btn-circle avatar"
+              >
+                <div className="w-10 rounded-full">
+                  <img alt="Tailwind CSS Navbar component" src={userICon} />
+                </div>
               </div>
-            </div>
-            <ul
-              tabIndex={0}
-              className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
-            >
-              <li>
-                <a className="justify-between">
-                  Profile
-                  <span className="badge">New</span>
-                </a>
-              </li>
-              <li>
-                <a>Settings</a>
-              </li>
-              <li>
-                <a>Logout</a>
-              </li>
-            </ul>
-          </div> */}
+              <ul
+                tabIndex={0}
+                className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
+              >
+                <li>
+                  <a className="justify-between">
+                    Profile
+                    <span className="badge">New</span>
+                  </a>
+                </li>
+                <li>
+                  <a>Settings</a>
+                </li>
 
+                <li>
+                  <a onClick={signOutHandler}>Logout</a>
+                </li>
+              </ul>
+            </div>
+          )}
           <label className="swap swap-rotate">
             {/* this hidden checkbox controls the state */}
             <input

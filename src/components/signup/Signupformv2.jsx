@@ -1,5 +1,5 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useContext } from "react";
 import "./signUpFrom.styles.scss";
 import {
   createAuthUserWithEmailPassword,
@@ -7,14 +7,15 @@ import {
 } from "../../routes/signin/firebase";
 import FromInput from "../Login/FromInput";
 import { AuthChoice } from "../Login/AuthChoice";
-import GoogleButton from "../GoogleButton/GoogleButton";
 import SignUpImage from "./SignUpImage";
+import { UserContext } from "../../contex/UserContext";
+
 const Signupformv2 = ({ loginUser, loginPage, islogin }) => {
   const [email, setEmail] = useState("");
   const [Password, setPassword] = useState("");
   const [RePassword, setRePassword] = useState("");
   const [displayN, setDisplayname] = useState("");
-
+  const { setCurrentUser } = useContext(UserContext);
   const handleSubmitButton = async (e) => {
     e.preventDefault();
     const user = {
@@ -32,7 +33,7 @@ const Signupformv2 = ({ loginUser, loginPage, islogin }) => {
         user.email,
         user.Password
       );
-
+      setCurrentUser(userAuthData.user);
       const userRef = await createUserDocumentFromAuth(userAuthData.user, {
         displayName: displayN,
       });
@@ -73,12 +74,14 @@ const Signupformv2 = ({ loginUser, loginPage, islogin }) => {
                   inpotField={Password}
                   label={"Password"}
                   setField={setPassword}
+                  inputType="password"
                 />
 
                 <FromInput
                   inpotField={RePassword}
                   label={"Enter Password Again"}
                   setField={setRePassword}
+                  inputType="password"
                 />
                 <button
                   type="submit"

@@ -1,15 +1,20 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useContext } from "react";
 import FromInput from "./FromInput";
 import { AuthChoice } from "./AuthChoice";
 import SignUpImage from "../signup/SignUpImage";
 import GoogleButton from "../GoogleButton/GoogleButton";
+import { UserContext } from "../../contex/UserContext";
 import { signInAuthUserWithEmailPassword } from "../../routes/signin/firebase";
+
 const LoginFrom = ({ loginPage, islogin, loginUser }) => {
   const [username, setUsername] = useState("");
   const [userPassword, setUserPassword] = useState("");
   const [SignInError, setSignInErro] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
+
+  const { setCurrentUser } = useContext(UserContext);
+
   const handleLoginForm = async (e) => {
     e.preventDefault();
     if (!username || !userPassword) return;
@@ -19,7 +24,10 @@ const LoginFrom = ({ loginPage, islogin, loginUser }) => {
         username,
         userPassword
       );
-      console.log(response.user.uid);
+      setCurrentUser(response.user);
+
+      setUsername("");
+      setUserPassword("");
     } catch (error) {
       setSignInErro(true);
       setErrorMessage(error.message);
@@ -61,6 +69,7 @@ const LoginFrom = ({ loginPage, islogin, loginUser }) => {
                     inpotField={userPassword}
                     label={" Password"}
                     setField={setUserPassword}
+                    inputType="password"
                   />
 
                   <button
