@@ -6,6 +6,7 @@ import {
   createUserDocumentFromAuth,
 } from "../../routes/signin/firebase";
 import FromInput from "../Login/FromInput";
+import { AuthChoice } from "../Login/AuthChoice";
 
 const Signupformv2 = ({ loginUser, loginPage, islogin }) => {
   const [email, setEmail] = useState("");
@@ -44,8 +45,8 @@ const Signupformv2 = ({ loginUser, loginPage, islogin }) => {
     }
   };
   return (
-    <>
-      <section className="h-screen text-center">
+    <div className="w-full flex justify-center">
+      <section className="h-screen w-[1048px]">
         <div
           className="container h-full px-12 py-12"
           style={{ margin: "0px auto" }}
@@ -85,16 +86,6 @@ const Signupformv2 = ({ loginUser, loginPage, islogin }) => {
                   label={"Enter Password Again"}
                   setField={setRePassword}
                 />
-
-                <div className="mb-6 flex items-center justify-between">
-                  <a
-                    href="#!"
-                    className="text-primary focus:outline-none dark:text-primary-400"
-                  >
-                    Terms and conditions
-                  </a>
-                </div>
-
                 <button
                   type="submit"
                   className="inline-block w-full rounded bg-primary px-7 pb-2.5 pt-3 text-sm font-medium uppercase leading-normal text-white shadow-primary-3 transition duration-150 ease-in-out hover:bg-primary-accent-300 hover:shadow-primary-2 focus:bg-primary-accent-300 focus:shadow-primary-2 focus:outline-none focus:ring-0 active:bg-primary-600 active:shadow-primary-2 dark:shadow-black/30 dark:hover:shadow-dark-strong dark:focus:shadow-dark-strong dark:active:shadow-dark-strong"
@@ -150,20 +141,17 @@ const Signupformv2 = ({ loginUser, loginPage, islogin }) => {
                   </button>
                 </div>
               </form>
-              <p className="mb-0 mt-2 pt-1 text-sm font-semibold">
-                You do have an account?
-                <a
-                  className="text-danger cursor-pointer transition duration-150 ease-in-out hover:text-danger-600 focus:text-danger-600 active:text-danger-700"
-                  onClick={() => loginPage(!islogin)}
-                >
-                  Login
-                </a>
-              </p>
+              <AuthChoice
+                message={"You do have an account?"}
+                message2={"Login"}
+                authMethod={loginPage}
+                method={islogin}
+              />
             </div>
           </div>
         </div>
       </section>
-    </>
+    </div>
   );
 };
 
