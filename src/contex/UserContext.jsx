@@ -1,4 +1,5 @@
-import { createContext, useState, useContext } from "react";
+import { createContext, useState, useContext, useEffect } from "react";
+import { onAuthStateChangedListener } from "../routes/signin/firebase";
 
 export const UserContext = createContext({
   currentUser: null,
@@ -12,5 +13,16 @@ export const UserProvider = ({ children }) => {
     currentUser,
     setCurrentUser,
   };
+
+  useEffect(() => {
+    try {
+      const isUserLoggedIn = onAuthStateChangedListener((user) => {
+        setCurrentUser(() => user);
+      });
+      return isUserLoggedIn;
+    } catch (error) {
+      console.log(`There was fetch failure ${error}`);
+    }
+  }, []);
   return <UserContext.Provider value={value}>{children}</UserContext.Provider>;
 };
