@@ -1,13 +1,19 @@
 import { createContext, useEffect, useState } from "react";
-import allproducts from "../data/shop_data";
+// import allproducts from "../data/shop_data";
 export const ProductsContext = createContext({ products: [] });
 
 export const PorductsProvider = ({ children }) => {
-  const [products, setAllproducts] = useState(null);
+  const [products, setAllproducts] = useState([]);
 
   const value = { products };
   useEffect(() => {
-    setAllproducts(allproducts);
+    const getProduct = async () => {
+      const response = await fetch("https://fakestoreapi.com/products?limit=8");
+      const data = await response.json();
+
+      setAllproducts(data);
+    };
+    getProduct();
   }, []);
 
   return (
