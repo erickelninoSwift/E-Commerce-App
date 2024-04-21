@@ -48,11 +48,8 @@ const Signupformv2 = ({ loginUser, loginPage, islogin }) => {
   };
   return (
     <div className="w-full flex justify-center">
-      <section className="h-screen w-[1048px]">
-        <div
-          className="container h-full px-12 py-12"
-          style={{ margin: "0px auto" }}
-        >
+      <section className="h-[auto] m-[100px] p-[20px]  w-[1048px]">
+        <div className="container h-full px-12 py-12">
           <div className="flex h-full flex-wrap items-center justify-center lg:justify-between">
             <SignUpImage />
             <div className="md:w-8/12 lg:ms-6 lg:w-5/12">

@@ -37,7 +37,7 @@ const LoginFrom = ({ loginPage, islogin, loginUser }) => {
   return (
     <>
       <div className="w-full flex justify-center">
-        <section className="h-screen w-[1048px]">
+        <section className="h-[auto] m-[100px] p-[20px] w-[1048px]">
           <div className="container h-full px-6 py-24">
             {SignInError ? (
               <div

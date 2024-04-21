@@ -1,5 +1,5 @@
 import { createContext, useEffect, useState } from "react";
-// import allproducts from "../data/shop_data";
+import allProducts from "../shop-data.json";
 export const ProductsContext = createContext({ products: [] });
 
 export const PorductsProvider = ({ children }) => {
@@ -8,10 +8,12 @@ export const PorductsProvider = ({ children }) => {
   const value = { products };
   useEffect(() => {
     const getProduct = async () => {
-      const response = await fetch("https://fakestoreapi.com/products?limit=8");
+      const response = await fetch("https://api.escuelajs.co/api/v1/products");
       const data = await response.json();
-
-      setAllproducts(data);
+      if (response.status === 200) {
+        console.log("jackpot here ");
+      }
+      setAllproducts(allProducts);
     };
     getProduct();
   }, []);
