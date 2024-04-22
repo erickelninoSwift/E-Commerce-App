@@ -1,15 +1,16 @@
 import { Outlet, NavLink } from "react-router-dom";
 import "./navigation.styles.scss";
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import { UserContext } from "../../contex/UserContext";
 import userICon from "../../assets/mipicture.jpeg";
-import ShoppingCart from "../../components/shopping-cart-icon/ShoppingCart";
 import { signOutUserAuth } from "../signin/firebase";
-
-// import logo from "../../assets/logo192.png";
+import CartIcon from "../../components/shopping-cart-icon/CartIcon";
+import ShoppingCart from "../../components/shopping-cart-icon/ShoppingCart";
+import { CartContext } from "../../contex/Cart.Context";
 const Navigation = () => {
   const { currentUser, setCurrentUser } = useContext(UserContext);
-
+  const { isCartOpen } = useContext(CartContext);
+  const [isShowing, setIsShowing] = useState(false);
   const signOutHandler = async () => {
     try {
       await signOutUserAuth();
@@ -27,8 +28,8 @@ const Navigation = () => {
             J-SHOP
           </NavLink>
         </div>
-        <div className="flex-none gap-3">
-          <ul className="menu menu-horizontal px-1">
+        <div className="flex-none gap-5">
+          <ul className="menu menu-horizontal gap-5 px-1">
             <li>
               <NavLink to={"/"}>HOME</NavLink>
             </li>
@@ -52,7 +53,8 @@ const Navigation = () => {
           </div> */}
         </div>
         <div className="flex-none">
-          <ShoppingCart />
+          <CartIcon />
+          {isCartOpen && <ShoppingCart />}
           {currentUser && (
             <div className="dropdown dropdown-end">
               <div
