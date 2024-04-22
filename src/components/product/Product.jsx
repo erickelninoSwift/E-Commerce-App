@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useContext } from "react";
 import "./product-card.styles.scss";
+import { CartContext } from "../../contex/Cart.Context";
 import Rating from "./Rating";
 const Product = ({ itemDetails }) => {
+  const { additemsToCart, cartItems } = useContext(CartContext);
   const { imageUrl, price, name, rating } = itemDetails;
-  console.log(itemDetails);
+
   return (
     <article className="relative">
       <a
@@ -46,6 +48,7 @@ const Product = ({ itemDetails }) => {
         <a
           href="#"
           className="flex items-center justify-center rounded-md w-[auto] bg-slate-900 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-blue-300"
+          onClick={() => additemsToCart(itemDetails)}
         >
           Add to cart
         </a>
