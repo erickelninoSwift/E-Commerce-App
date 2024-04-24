@@ -4,10 +4,10 @@ import Subtotal from "./Subtotal";
 import CheckoutButton from "./CheckoutButton";
 import { CartContext } from "../../contex/Cart.Context";
 const CheckoutPage = () => {
-  const { setIsCartOpen, isCartOpen } = useContext(CartContext);
+  const { setIsCartOpen, cartItems } = useContext(CartContext);
   useEffect(() => {
     const closeCart = () => {
-      return setIsCartOpen(!isCartOpen);
+      return setIsCartOpen(false);
     };
     closeCart();
   }, []);
@@ -24,8 +24,12 @@ const CheckoutPage = () => {
               <div className="px-4 py-6 sm:px-8 sm:py-10">
                 <div className="flow-root">
                   <ul className="-my-8">
-                    <CheckoutItem />
-                    <CheckoutItem />
+                    {cartItems.length > 0
+                      ? cartItems.map((data) => {
+                          const { id } = data;
+                          return <CheckoutItem key={id} cartItem={data} />;
+                        })
+                      : ""}
                   </ul>
                 </div>
                 <Subtotal />

@@ -5,7 +5,10 @@ export const CartContext = createContext({
   setIsCartOpen: () => {},
   cartItems: [],
   additemsToCart: () => {},
+  removeItemsToCard: () => {},
+  deleteItemFromCart: () => {},
   totalQuantity: 0,
+  CurrentTotalAmount: 0,
 });
 
 const checkproductExist = (cartItems, productToAdd) => {
@@ -21,15 +24,52 @@ const checkproductExist = (cartItems, productToAdd) => {
   return [...cartItems, { ...productToAdd, quantity: 1 }];
 };
 
+const removeCurrentItemFromCart = (cartItems, itemToDelete) => {
+  return cartItems.filter((data) => data.id !== itemToDelete.id);
+};
+const removeProductFromCard = (cartItems, productToremove) => {
+  const existingItem = cartItems.find((data) => data.id === productToremove.id);
+
+  if (existingItem.quantity === 1) {
+    return cartItems.filter((data) => data.id !== productToremove.id);
+  }
+
+  return cartItems.map((currentProduct) => {
+    return currentProduct.id === productToremove.id
+      ? { ...currentProduct, quantity: currentProduct.quantity - 1 }
+      : currentProduct;
+  });
+};
+
+const totalAmountPrice = (cartItems) => {
+  return cartItems.reduce((acc, currentProduct) => {
+    return acc + currentProduct.quantity * currentProduct.price;
+  }, 0);
+};
+
 export const CartContextprovider = ({ children }) => {
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [cartItems, setItemsToCart] = useState([]);
   const [totalQuantity, setTotalQuantity] = useState(0);
+  const [CurrentTotalAmount, setTotalAmount] = useState(0);
   const additemsToCart = (itemToAdd) => {
-    setItemsToCart(checkproductExist(cartItems, itemToAdd));
+    setItemsToCart(() => {
+      return checkproductExist(cartItems, itemToAdd);
+    });
+  };
+
+  const removeItemsToCard = (itemToRemove) => {
+    setItemsToCart(() => {
+      return removeProductFromCard(cartItems, itemToRemove);
+    });
+  };
+
+  const deleteItemFromCart = (itemToDelete) => {
+    setItemsToCart(() => removeCurrentItemFromCart(cartItems, itemToDelete));
   };
 
   useEffect(() => {
+    setTotalAmount(totalAmountPrice(cartItems));
     setTotalQuantity(
       cartItems.reduce((acc, current) => {
         const { quantity } = current;
@@ -44,8 +84,10 @@ export const CartContextprovider = ({ children }) => {
     additemsToCart,
     cartItems,
     totalQuantity,
+    removeItemsToCard,
+    deleteItemFromCart,
+    CurrentTotalAmount,
   };
 
-  console.log(`Total Quantity is  : ${totalQuantity}`);
   return <CartContext.Provider value={value}>{children}</CartContext.Provider>;
 };

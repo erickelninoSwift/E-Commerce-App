@@ -3,10 +3,11 @@ import "./ShoppingCart.style.scss";
 import "./cart-dropdown.styles.scss";
 import CartItem from "../cart-item/Cartitem";
 import { CartContext } from "../../contex/Cart.Context";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const ShoppingCart = () => {
   const { cartItems } = useContext(CartContext);
+  const navigate = useNavigate();
   return (
     <div className="cart-dropdown-container mt-3">
       {cartItems.length > 0 ? (
@@ -18,8 +19,11 @@ const ShoppingCart = () => {
       ) : (
         <span className="empty-message"> Cart Empty</span>
       )}
-      <button className="bg-black text-white hover:bg-black">
-        <Link to={"/checkout"}>GO TO CHECK OUT</Link>
+      <button
+        className="bg-black text-white hover:bg-black"
+        onClick={() => navigate("/checkout")}
+      >
+        GO TO CHECK OUT
       </button>
     </div>
   );
