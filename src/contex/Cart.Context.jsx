@@ -70,6 +70,10 @@ export const CartContextprovider = ({ children }) => {
 
   useEffect(() => {
     setTotalAmount(totalAmountPrice(cartItems));
+  }, [cartItems]);
+
+  // =========================================
+  useEffect(() => {
     setTotalQuantity(
       cartItems.reduce((acc, current) => {
         const { quantity } = current;
