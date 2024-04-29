@@ -1,16 +1,16 @@
 import { createContext, useEffect, useState } from "react";
-import SHOP_DATA from "../data/shop-data";
+// import SHOP_DATA from "../data/shop-data";
 import {
   addDocumentToCollection,
   getCategoriesandDocument,
 } from "../routes/signin/firebase";
 
-export const ProductsContext = createContext({ products: [] });
+export const CategoriesContext = createContext({ Categories: {} });
 
-export const PorductsProvider = ({ children }) => {
-  const [products, setAllproducts] = useState([]);
+export const CategoriesProvider = ({ children }) => {
+  const [categories, setCategories] = useState({});
 
-  const value = { products };
+  const value = { categories };
   useEffect(() => {
     const getProduct = async () => {
       const response = await fetch("https://api.escuelajs.co/api/v1/products");
@@ -19,7 +19,6 @@ export const PorductsProvider = ({ children }) => {
         console.log("jackpot here ");
       }
       // setAllproducts(allProducts);
-      console.log(SHOP_DATA);
     };
     getProduct();
   }, []);
@@ -28,17 +27,16 @@ export const PorductsProvider = ({ children }) => {
     const getData = async () => {
       try {
         const data = await getCategoriesandDocument();
-        console.log(data);
+        setCategories(data);
       } catch (error) {
         console.log(error);
       }
     };
     getData();
   }, []);
-
   return (
-    <ProductsContext.Provider value={value}>
+    <CategoriesContext.Provider value={value}>
       {children}
-    </ProductsContext.Provider>
+    </CategoriesContext.Provider>
   );
 };

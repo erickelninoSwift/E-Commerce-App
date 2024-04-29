@@ -71,15 +71,13 @@ export const getCategoriesandDocument = async () => {
   const collectionref = collection(jackpotDB, "Categories");
   const myQuery = query(collectionref);
   const querySnapshot = await getDocs(myQuery);
-  console.log(`snap : ${querySnapshot}`);
+
   const categoryMap = querySnapshot.docs.reduce((acc, docuSnapshot) => {
-    console.log(`doc : ${docuSnapshot}`);
-    console.log(`doc : ${docuSnapshot.data()}`);
     const { title, items } = docuSnapshot.data();
     acc[title.toLowerCase()] = items;
     return acc;
   }, {});
-  console.log(`categoryMap: ${categoryMap}`);
+
   return categoryMap;
 };
 
