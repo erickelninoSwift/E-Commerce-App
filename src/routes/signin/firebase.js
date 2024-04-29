@@ -12,7 +12,16 @@ import {
 } from "firebase/auth";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
-import { getFirestore, doc, getDoc, setDoc } from "firebase/firestore";
+import {
+  getFirestore,
+  doc,
+  getDoc,
+  setDoc,
+  collection,
+  writeBatch,
+  query,
+  getDocs,
+} from "firebase/firestore";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
@@ -45,6 +54,34 @@ export const signInWithGoogleRedirect = () => {
 };
 
 export const jackpotDB = getFirestore();
+
+export const addDocumentToCollection = async (collectionKey, objectToAdd) => {
+  const collectionRef = collection(jackpotDB, collectionKey);
+  const batch = writeBatch(jackpotDB);
+
+  objectToAdd.forEach((element) => {
+    const docRef = doc(collectionRef, element.title.toLowerCase());
+    batch.set(docRef, element);
+  });
+  await batch.commit();
+  console.log("done");
+};
+
+export const getCategoriesandDocument = async () => {
+  const collectionref = collection(jackpotDB, "Categories");
+  const myQuery = query(collectionref);
+  const querySnapshot = await getDocs(myQuery);
+  console.log(`snap : ${querySnapshot}`);
+  const categoryMap = querySnapshot.docs.reduce((acc, docuSnapshot) => {
+    console.log(`doc : ${docuSnapshot}`);
+    console.log(`doc : ${docuSnapshot.data()}`);
+    const { title, items } = docuSnapshot.data();
+    acc[title.toLowerCase()] = items;
+    return acc;
+  }, {});
+  console.log(`categoryMap: ${categoryMap}`);
+  return categoryMap;
+};
 
 export const createUserDocumentFromAuth = async (
   userAuth,
