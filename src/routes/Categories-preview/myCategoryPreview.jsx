@@ -2,8 +2,9 @@ import { useContext, Fragment } from "react";
 import { CategoriesContext } from "../../contex/CategoriesContext";
 import CategoryPreview from "../../components/category-preview/CategoryPreview";
 import "./myCategoryPreview.scss";
-
+import { useNavigate } from "react-router-dom";
 const CategroriesPreview = () => {
+  const navigate = useNavigate();
   const { categories } = useContext(CategoriesContext);
   console.log(categories);
   return (
@@ -17,7 +18,7 @@ const CategroriesPreview = () => {
                   <h2 className="text-2xl ml-3 font-bold sm:text-3xl">
                     <span
                       style={{ cursor: "pointer" }}
-                      onClick={() => console.log("lets get it")}
+                      onClick={() => navigate(`${title}`)}
                     >
                       {" "}
                       {title.toUpperCase()}
