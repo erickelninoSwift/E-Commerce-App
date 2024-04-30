@@ -14,7 +14,7 @@ const Product = ({ itemDetails }) => {
       >
         <img
           className="object-cover"
-          style={{ height: "", width: "100%", objectFit: "cover" }}
+          style={{ height: "100%", width: "100%", objectFit: "cover" }}
           src={imageUrl}
           alt="product image"
         />
