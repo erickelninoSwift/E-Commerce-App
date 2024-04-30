@@ -4,8 +4,7 @@ import { Routes, Route } from "react-router-dom";
 import CheckoutSecondPage from "./routes/checkout/CheckoutSecondPage";
 import Navigation from "./routes/navigation/navigation.component";
 import SignIn from "./routes/signin/SignIn.component";
-import CategroriesPreview from "./routes/Categories-preview/myCategoryPreview";
-import CheckoutPage from "./routes/checkout/CheckoutPage";
+
 const App = () => {
   return (
     <>
