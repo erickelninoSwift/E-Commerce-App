@@ -2,14 +2,23 @@ import React from "react";
 import "./cart-icon.styles.scss";
 import { useContext } from "react";
 import { CartContext } from "../../contex/Cart.Context";
+import styled from "styled-components";
+
+const CartIconComponent = styled.div`
+  width: 45px;
+  height: 45px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+`;
+
 const CartIcon = () => {
   const { setIsCartOpen, isCartOpen, totalQuantity } = useContext(CartContext);
-
+  // onClick={() => setIsCartOpen(!isCartOpen)}
   return (
-    <div
-      className="card-icon-container"
-      onClick={() => setIsCartOpen(!isCartOpen)}
-    >
+    <CartIconComponent onClick={() => setIsCartOpen(!isCartOpen)}>
       <div tabIndex={0} role="button" className="btn btn-ghost btn-circle">
         <div className="indicator">
           <svg
@@ -29,7 +38,7 @@ const CartIcon = () => {
           <span className="badge badge-sm indicator-item">{totalQuantity}</span>
         </div>
       </div>
-    </div>
+    </CartIconComponent>
   );
 };
 

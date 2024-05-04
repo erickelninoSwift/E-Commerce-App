@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 const EmptyMessage = styled.span`
-  font-size: 18px;
+  font-size: 20px;
   margin: 50px auto;
 `;
 
