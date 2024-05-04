@@ -7,6 +7,7 @@ import { signOutUserAuth } from "../signin/firebase";
 import CartIcon from "../../components/shopping-cart-icon/CartIcon";
 import ShoppingCart from "../../components/shopping-cart-icon/ShoppingCart";
 import { CartContext } from "../../contex/Cart.Context";
+
 const Navigation = () => {
   const { currentUser, setCurrentUser } = useContext(UserContext);
   const { isCartOpen } = useContext(CartContext);
@@ -44,13 +45,6 @@ const Navigation = () => {
               </li>
             )}
           </ul>
-          {/* <div className="form-control">
-            <input
-              type="text"
-              placeholder="Search"
-              className="input input-bordered w-24 md:w-auto"
-            />
-          </div> */}
         </div>
         <div className="flex-none">
           <CartIcon />
@@ -101,8 +95,7 @@ const Navigation = () => {
         <nav className="grid grid-flow-col gap-4">
           <a className="link link-hover">Home</a>
           <a className="link link-hover">Shop</a>
-          <a className="link link-hover">About us</a>
-          <a className="link link-hover">Contact</a>
+          <a className="link link-hover">Login</a>
         </nav>
         <nav>
           <div className="grid grid-flow-col gap-4">

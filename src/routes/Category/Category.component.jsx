@@ -2,6 +2,7 @@ import { useParams } from "react-router-dom";
 import { useContext, useState, useEffect } from "react";
 import { CategoriesContext } from "../../contex/CategoriesContext";
 import Product from "../../components/product/Product";
+
 const Category = () => {
   const { category } = useParams();
   const { categories } = useContext(CategoriesContext);
@@ -14,7 +15,7 @@ const Category = () => {
   }, [categories, category]);
   console.log(products);
   return (
-    <section className=" bg-white py-10 text-gray-700 sm:py-16 lg:py-10">
+    <section className="bg-white py-10 text-gray-700 sm:py-16 lg:py-10">
       <div className="mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8">
         <div className="">
           <h2 className="text-2xl ml-3 font-bold sm:text-3xl">

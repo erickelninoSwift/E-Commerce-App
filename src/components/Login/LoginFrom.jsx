@@ -6,7 +6,7 @@ import SignUpImage from "../signup/SignUpImage";
 import GoogleButton from "../GoogleButton/GoogleButton";
 import { UserContext } from "../../contex/UserContext";
 import { signInAuthUserWithEmailPassword } from "../../routes/signin/firebase";
-
+import Sponsors from "../sponsor/Sponsors";
 const LoginFrom = ({ loginPage, islogin, loginUser }) => {
   const [username, setUsername] = useState("");
   const [userPassword, setUserPassword] = useState("");
@@ -103,6 +103,7 @@ const LoginFrom = ({ loginPage, islogin, loginUser }) => {
           </div>
         </section>
       </div>
+      <Sponsors />
     </>
   );
 };

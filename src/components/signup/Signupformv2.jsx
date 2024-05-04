@@ -9,6 +9,7 @@ import FromInput from "../Login/FromInput";
 import { AuthChoice } from "../Login/AuthChoice";
 import SignUpImage from "./SignUpImage";
 import { UserContext } from "../../contex/UserContext";
+import Sponsors from "../sponsor/Sponsors";
 
 const Signupformv2 = ({ loginUser, loginPage, islogin }) => {
   const [email, setEmail] = useState("");
@@ -47,50 +48,51 @@ const Signupformv2 = ({ loginUser, loginPage, islogin }) => {
     }
   };
   return (
-    <div className="w-full flex justify-center">
-      <section className="h-[auto] m-[100px] p-[20px]  w-[1048px]">
-        <div className="container h-full px-12 py-12">
-          <div className="flex h-full flex-wrap items-center justify-center lg:justify-between">
-            <SignUpImage />
-            <div className="md:w-8/12 lg:ms-6 lg:w-5/12">
-              <h2 className="text-3xl mb-5">Register now !</h2>
-              <form onSubmit={(e) => handleSubmitButton(e)}>
-                <FromInput
-                  inpotField={displayN}
-                  label={"Display Name"}
-                  setField={setDisplayname}
-                />
+    <>
+      <div className="w-full flex justify-center">
+        <section className="h-[auto] m-[50px] p-[20px]  w-[1048px]">
+          <div className="container h-full px-12 py-12">
+            <div className="flex h-full flex-wrap items-center justify-center lg:justify-between">
+              <SignUpImage />
+              <div className="md:w-8/12 lg:ms-6 lg:w-5/12">
+                <h2 className="text-3xl mb-5">Register now !</h2>
+                <form onSubmit={(e) => handleSubmitButton(e)}>
+                  <FromInput
+                    inpotField={displayN}
+                    label={"Display Name"}
+                    setField={setDisplayname}
+                  />
 
-                <FromInput
-                  inpotField={email}
-                  label={"Email address"}
-                  setField={setEmail}
-                />
+                  <FromInput
+                    inpotField={email}
+                    label={"Email address"}
+                    setField={setEmail}
+                  />
 
-                <FromInput
-                  inpotField={Password}
-                  label={"Password"}
-                  setField={setPassword}
-                  inputType="password"
-                />
+                  <FromInput
+                    inpotField={Password}
+                    label={"Password"}
+                    setField={setPassword}
+                    inputType="password"
+                  />
 
-                <FromInput
-                  inpotField={RePassword}
-                  label={"Enter Password Again"}
-                  setField={setRePassword}
-                  inputType="password"
-                />
-                <button
-                  type="submit"
-                  className="inline-block w-full rounded bg-primary px-7 pb-2.5 pt-3 text-sm font-medium uppercase leading-normal text-white shadow-primary-3 transition duration-150 ease-in-out hover:bg-primary-accent-300 hover:shadow-primary-2 focus:bg-primary-accent-300 focus:shadow-primary-2 focus:outline-none focus:ring-0 active:bg-primary-600 active:shadow-primary-2 dark:shadow-black/30 dark:hover:shadow-dark-strong dark:focus:shadow-dark-strong dark:active:shadow-dark-strong"
-                  data-twe-ripple-init
-                  data-twe-ripple-color="light"
-                  disabled={Password !== RePassword ? true : false}
-                >
-                  Register
-                </button>
+                  <FromInput
+                    inpotField={RePassword}
+                    label={"Enter Password Again"}
+                    setField={setRePassword}
+                    inputType="password"
+                  />
+                  <button
+                    type="submit"
+                    className="inline-block w-full rounded bg-primary px-7 pb-2.5 pt-3 text-sm font-medium uppercase leading-normal text-white shadow-primary-3 transition duration-150 ease-in-out hover:bg-primary-accent-300 hover:shadow-primary-2 focus:bg-primary-accent-300 focus:shadow-primary-2 focus:outline-none focus:ring-0 active:bg-primary-600 active:shadow-primary-2 dark:shadow-black/30 dark:hover:shadow-dark-strong dark:focus:shadow-dark-strong dark:active:shadow-dark-strong"
+                    data-twe-ripple-init
+                    data-twe-ripple-color="light"
+                    disabled={Password !== RePassword ? true : false}
+                  >
+                    Register
+                  </button>
 
-                {/* <div className="my-4 flex items-center before:mt-0.5 before:flex-1 before:border-t before:border-neutral-300 after:mt-0.5 after:flex-1 after:border-t after:border-neutral-300 dark:before:border-neutral-500 dark:after:border-neutral-500">
+                  {/* <div className="my-4 flex items-center before:mt-0.5 before:flex-1 before:border-t before:border-neutral-300 after:mt-0.5 after:flex-1 after:border-t after:border-neutral-300 dark:before:border-neutral-500 dark:after:border-neutral-500">
                   <p className="mx-4 mb-0 text-center font-semibold dark:text-neutral-200">
                     OR
                   </p>
@@ -99,18 +101,20 @@ const Signupformv2 = ({ loginUser, loginPage, islogin }) => {
                   loginUserwithGoogle={loginUser}
                   message={"REGISTER WITH GOOGLE"}
                 /> */}
-              </form>
-              <AuthChoice
-                message={"Already have an Account ?"}
-                message2={"Login"}
-                authMethod={loginPage}
-                method={islogin}
-              />
+                </form>
+                <AuthChoice
+                  message={"Already have an Account ?"}
+                  message2={"Login"}
+                  authMethod={loginPage}
+                  method={islogin}
+                />
+              </div>
             </div>
           </div>
-        </div>
-      </section>
-    </div>
+        </section>
+      </div>
+      <Sponsors />
+    </>
   );
 };
 
