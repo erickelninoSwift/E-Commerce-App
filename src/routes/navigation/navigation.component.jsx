@@ -25,8 +25,8 @@ const Navigation = () => {
     <>
       <div className="navbar bg-base-300">
         <div className="flex-1">
-          <NavLink className="btn btn-ghost text-xl" to={"/"}>
-            J-SHOP
+          <NavLink className="btn btn-ghost text-2xl " to={"/"}>
+            J-SHOPPING
           </NavLink>
         </div>
         <div className="flex-none gap-5">

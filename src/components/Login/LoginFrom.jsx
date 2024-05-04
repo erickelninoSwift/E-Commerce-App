@@ -1,11 +1,13 @@
 import React from "react";
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
+import { CartContext } from "../../contex/Cart.Context";
 import FromInput from "./FromInput";
 import { AuthChoice } from "./AuthChoice";
 import SignUpImage from "../signup/SignUpImage";
 import GoogleButton from "../GoogleButton/GoogleButton";
 import { UserContext } from "../../contex/UserContext";
 import { signInAuthUserWithEmailPassword } from "../../routes/signin/firebase";
+import { Heading } from "../PageHeading/Heading";
 import Sponsors from "../sponsor/Sponsors";
 const LoginFrom = ({ loginPage, islogin, loginUser }) => {
   const [username, setUsername] = useState("");
@@ -14,7 +16,10 @@ const LoginFrom = ({ loginPage, islogin, loginUser }) => {
   const [errorMessage, setErrorMessage] = useState("");
 
   const { setCurrentUser } = useContext(UserContext);
-
+  const { setIsCartOpen } = useContext(CartContext);
+  useEffect(() => {
+    setIsCartOpen(false);
+  }, []);
   const handleLoginForm = async (e) => {
     e.preventDefault();
     if (!username || !userPassword) return;
@@ -38,6 +43,10 @@ const LoginFrom = ({ loginPage, islogin, loginUser }) => {
     <>
       <div className="w-full flex justify-center">
         <section className="h-[auto] m-[100px] p-[20px] w-[1048px]">
+          <Heading
+            title={"Authentication / Login"}
+            secondary={"With actions"}
+          />
           <div className="container h-full px-6 py-24">
             {SignInError ? (
               <div

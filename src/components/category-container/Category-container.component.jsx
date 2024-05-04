@@ -2,7 +2,7 @@ import "./categories.styles.scss";
 import { NavLink } from "react-router-dom";
 const Category = () => {
   return (
-    <div className="relative overflow-hidden bg-white m-5">
+    <div className="relative overflow-hidden bg-white mt-20">
       <div className="pb-80 pt-16 sm:pb-40 sm:pt-24 lg:pb-48 lg:pt-40">
         <div className="relative mx-auto max-w-7xl px-4 sm:static sm:px-6 lg:px-8">
           <div className="sm:max-w-lg">
@@ -84,7 +84,7 @@ const Category = () => {
 
               <NavLink
                 to="/shop/"
-                className="inline-block rounded-md border border-transparent bg-black px-8 py-3 text-center font-medium text-white hover:bg-indigo-700"
+                className="inline-block rounded-md border border-transparent bg-black px-8 py-3 text-center font-medium text-white hover:bg-black"
               >
                 Shop Collection
               </NavLink>

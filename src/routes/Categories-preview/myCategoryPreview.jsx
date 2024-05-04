@@ -1,11 +1,18 @@
-import { useContext, Fragment } from "react";
+import { useContext, Fragment, useEffect } from "react";
 import { CategoriesContext } from "../../contex/CategoriesContext";
 import CategoryPreview from "../../components/category-preview/CategoryPreview";
 import "./myCategoryPreview.scss";
 import { useNavigate } from "react-router-dom";
+import { CartContext } from "../../contex/Cart.Context";
+import Sponsors from "../../components/sponsor/Sponsors";
 const CategroriesPreview = () => {
   const navigate = useNavigate();
   const { categories } = useContext(CategoriesContext);
+  const { setIsCartOpen } = useContext(CartContext);
+
+  useEffect(() => {
+    setIsCartOpen(false);
+  }, []);
   console.log(categories);
   return (
     <Fragment>
@@ -31,6 +38,7 @@ const CategroriesPreview = () => {
           </Fragment>
         );
       })}
+      <Sponsors />
     </Fragment>
   );
 };

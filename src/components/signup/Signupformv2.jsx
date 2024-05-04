@@ -1,5 +1,5 @@
 import React from "react";
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 import "./signUpFrom.styles.scss";
 import {
   createAuthUserWithEmailPassword,
@@ -10,6 +10,8 @@ import { AuthChoice } from "../Login/AuthChoice";
 import SignUpImage from "./SignUpImage";
 import { UserContext } from "../../contex/UserContext";
 import Sponsors from "../sponsor/Sponsors";
+import { Heading } from "../PageHeading/Heading";
+import { CartContext } from "../../contex/Cart.Context";
 
 const Signupformv2 = ({ loginUser, loginPage, islogin }) => {
   const [email, setEmail] = useState("");
@@ -17,6 +19,11 @@ const Signupformv2 = ({ loginUser, loginPage, islogin }) => {
   const [RePassword, setRePassword] = useState("");
   const [displayN, setDisplayname] = useState("");
   const { setCurrentUser } = useContext(UserContext);
+
+  const { setIsCartOpen } = useContext(CartContext);
+  useEffect(() => {
+    setIsCartOpen(false);
+  }, []);
   const handleSubmitButton = async (e) => {
     e.preventDefault();
     const user = {
@@ -51,6 +58,10 @@ const Signupformv2 = ({ loginUser, loginPage, islogin }) => {
     <>
       <div className="w-full flex justify-center">
         <section className="h-[auto] m-[50px] p-[20px]  w-[1048px]">
+          <Heading
+            title={"Authentication / Register"}
+            secondary={"Make sure!!"}
+          />
           <div className="container h-full px-12 py-12">
             <div className="flex h-full flex-wrap items-center justify-center lg:justify-between">
               <SignUpImage />
