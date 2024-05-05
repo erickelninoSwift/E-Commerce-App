@@ -32,7 +32,10 @@ const CategroriesPreview = () => {
                     </span>
                   </h2>
                 </div>
-                <CategoryPreview products={categories[title]} />
+                <CategoryPreview
+                  category={title}
+                  products={categories[title]}
+                />
               </div>
             </section>
           </Fragment>

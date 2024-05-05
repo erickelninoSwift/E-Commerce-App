@@ -7,7 +7,6 @@ const Shop = () => {
     <Routes>
       <Route index element={<CategroriesPreview />} />
       <Route path=":category" element={<Category />} />
-      <Route path=":productID" element={<SignleProduct />} />
     </Routes>
   );
 };

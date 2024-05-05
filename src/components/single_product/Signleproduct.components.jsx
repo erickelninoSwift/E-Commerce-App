@@ -1,10 +1,21 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { UserContext } from "../../contex/UserContext";
-
-const SignleProduct = ({ product }) => {
+import { CategoriesContext } from "../../contex/CategoriesContext";
+import { useParams } from "react-router-dom";
+const SignleProduct = () => {
   const [productItem, setProductItem] = useState(null);
+  const { categories } = useContext(CategoriesContext);
+  const { id, category } = useParams();
 
-  useEffect(() => {}, [product]);
+  useEffect(() => {
+    const findProduct = categories[category].find(
+      (item) => item.id === Number(id)
+    );
+    if (findProduct) {
+      setProductItem(() => findProduct);
+    }
+  }, [productItem]);
+
   return (
     <section className="py-12 sm:py-16">
       <div className="container mx-auto px-4">
@@ -17,7 +28,7 @@ const SignleProduct = ({ product }) => {
                   className="rounded-md p-1 text-sm font-medium text-gray-600 focus:text-gray-900 focus:shadow hover:text-gray-800"
                 >
                   {" "}
-                  Home{" "}
+                  Products{" "}
                 </a>
               </div>
             </li>
@@ -31,7 +42,7 @@ const SignleProduct = ({ product }) => {
                     className="rounded-md p-1 text-sm font-medium text-gray-600 focus:text-gray-900 focus:shadow hover:text-gray-800"
                   >
                     {" "}
-                    Products{" "}
+                    {category}
                   </a>
                 </div>
               </div>
@@ -47,7 +58,7 @@ const SignleProduct = ({ product }) => {
                     aria-current="page"
                   >
                     {" "}
-                    Coffee{" "}
+                    {"title"}
                   </a>
                 </div>
               </div>
@@ -173,7 +184,7 @@ const SignleProduct = ({ product }) => {
               </p>
             </div>
 
-            <h2 className="mt-8 text-base text-gray-900">Coffee Type</h2>
+            <h2 className="mt-8 text-base text-gray-900">Size</h2>
             <div className="mt-3 flex select-none flex-wrap items-center gap-1">
               <label className="">
                 <input
@@ -181,10 +192,9 @@ const SignleProduct = ({ product }) => {
                   name="type"
                   value="Powder"
                   className="peer sr-only"
-                  checked
                 />
                 <p className="peer-checked:bg-black peer-checked:text-white rounded-lg border border-black px-6 py-2 font-bold">
-                  Powder
+                  S
                 </p>
               </label>
               <label className="">
@@ -195,7 +205,7 @@ const SignleProduct = ({ product }) => {
                   className="peer sr-only"
                 />
                 <p className="peer-checked:bg-black peer-checked:text-white rounded-lg border border-black px-6 py-2 font-bold">
-                  Whole Bean
+                  M
                 </p>
               </label>
               <label className="">
@@ -206,14 +216,12 @@ const SignleProduct = ({ product }) => {
                   className="peer sr-only"
                 />
                 <p className="peer-checked:bg-black peer-checked:text-white rounded-lg border border-black px-6 py-2 font-bold">
-                  Groud
+                  XL
                 </p>
               </label>
             </div>
 
-            <h2 className="mt-8 text-base text-gray-900">
-              Choose subscription
-            </h2>
+            <h2 className="mt-8 text-base text-gray-900">Choose color</h2>
             <div className="mt-3 flex select-none flex-wrap items-center gap-1">
               <label className="">
                 <input
@@ -223,9 +231,9 @@ const SignleProduct = ({ product }) => {
                   className="peer sr-only"
                 />
                 <p className="peer-checked:bg-black peer-checked:text-white rounded-lg border border-black px-6 py-2 font-bold">
-                  4 Months
+                  Red
                 </p>
-                <span className="mt-1 block text-center text-xs">$80/mo</span>
+                <span className="mt-1 block text-center text-xs"></span>
               </label>
               <label className="">
                 <input
@@ -233,12 +241,11 @@ const SignleProduct = ({ product }) => {
                   name="subscription"
                   value="8 Months"
                   className="peer sr-only"
-                  checked
                 />
                 <p className="peer-checked:bg-black peer-checked:text-white rounded-lg border border-black px-6 py-2 font-bold">
-                  8 Months
+                  White
                 </p>
-                <span className="mt-1 block text-center text-xs">$60/mo</span>
+                <span className="mt-1 block text-center text-xs"></span>
               </label>
               <label className="">
                 <input
@@ -248,21 +255,21 @@ const SignleProduct = ({ product }) => {
                   className="peer sr-only"
                 />
                 <p className="peer-checked:bg-black peer-checked:text-white rounded-lg border border-black px-6 py-2 font-bold">
-                  12 Months
+                  Blue
                 </p>
-                <span className="mt-1 block text-center text-xs">$40/mo</span>
+                <span className="mt-1 block text-center text-xs"></span>
               </label>
             </div>
 
             <div className="mt-10 flex flex-col items-center justify-between space-y-4 border-t border-b py-4 sm:flex-row sm:space-y-0">
               <div className="flex items-end">
-                <h1 className="text-3xl font-bold">$60.50</h1>
-                <span className="text-base">/month</span>
+                <h1 className="text-3xl font-bold">$0.00</h1>
+                {/* <span className="text-base"></span> */}
               </div>
 
               <button
                 type="button"
-                className="inline-flex items-center justify-center rounded-md border-2 border-transparent bg-gray-900 bg-none px-12 py-3 text-center text-base font-bold text-white transition-all duration-200 ease-in-out focus:shadow hover:bg-gray-800"
+                className="ml-5 inline-flex items-center justify-center rounded-md border-2 border-transparent bg-gray-900 bg-none px-12 py-3 text-center text-base font-bold text-white transition-all duration-200 ease-in-out focus:shadow hover:bg-gray-800"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -270,11 +277,11 @@ const SignleProduct = ({ product }) => {
                   fill="none"
                   viewBox="0 0 24 24"
                   stroke="currentColor"
-                  stroke-width="2"
+                  strokeWidth="2"
                 >
                   <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
                     d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"
                   />
                 </svg>
@@ -292,9 +299,9 @@ const SignleProduct = ({ product }) => {
                   stroke="currentColor"
                 >
                   <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
                     d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
                     className=""
                   ></path>
@@ -311,9 +318,9 @@ const SignleProduct = ({ product }) => {
                   stroke="currentColor"
                 >
                   <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
                     d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"
                     className=""
                   ></path>

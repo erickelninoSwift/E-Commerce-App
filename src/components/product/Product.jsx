@@ -1,13 +1,18 @@
 import React, { useContext } from "react";
+import { useNavigate } from "react-router-dom";
 import "./product-card.styles.scss";
 import { CartContext } from "../../contex/Cart.Context";
 import Rating from "./Rating";
-const Product = ({ itemDetails }) => {
-  const { additemsToCart, cartItems } = useContext(CartContext);
-  const { imageUrl, price, name, rating } = itemDetails;
+const Product = ({ itemDetails, currentCategory }) => {
+  const { additemsToCart } = useContext(CartContext);
+  const { imageUrl, price, name, id } = itemDetails;
+  const navigate = useNavigate();
 
   return (
-    <article className="relative">
+    <article
+      className="relative"
+      onClick={() => navigate(`/singleproduct/${currentCategory}/${id}`)}
+    >
       <a
         className="relative mx-3 mt-3 flex h-60 overflow-hidden rounded-xl"
         href="#"
