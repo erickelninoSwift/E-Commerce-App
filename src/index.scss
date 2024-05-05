@@ -6,7 +6,7 @@
 body {
   margin: 0;
   font-family: "IBM Plex Mono", monospace;
-  font-weight: 400;
+  font-weight: 300;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   padding: 30px 50px;
@@ -16,7 +16,7 @@ body {
 }
 
 h1 {
-  font-weight: 300;
+  font-weight: 200;
 }
 
 code {
@@ -24,5 +24,4 @@ code {
 }
 a {
   text-decoration: none;
-  // color: white;
 }
