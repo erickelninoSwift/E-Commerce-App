@@ -14,7 +14,6 @@ const Home = () => {
       <Outlet />
       <Category />
       <Sponsors />
-      <LoadSpinners />
     </>
   );
 };
