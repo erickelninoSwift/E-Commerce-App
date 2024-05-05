@@ -12,22 +12,10 @@ const SignleProduct = () => {
   const { categories } = useContext(CategoriesContext);
   const { id, category } = useParams();
 
-  useEffect(() => {
-    setCurrentCategory(() => category);
-    const findProduct = categories[category].find(
-      (item) => item.id === Number(id)
-    );
-    if (findProduct) {
-      return setProductItem(() => findProduct);
-    } else {
-      setProductItem(() => null);
-    }
-  }, [id, category]);
-
   return (
     <>
-      {productItem === null && <LoadSpinners />}
-      {productItem !== null && (
+      {!categories[category][Number(id)] && <LoadSpinners />}
+      {categories[category][Number(id)] && (
         <section className="py-10 sm:py-12">
           <div className="container mx-auto px-4">
             <nav className="flex">
@@ -53,7 +41,7 @@ const SignleProduct = () => {
                         className="rounded-md p-1 text-sm font-medium text-gray-600 focus:text-gray-900 focus:shadow hover:text-gray-800"
                       >
                         {" "}
-                        {currentCategory}
+                        {category}
                       </a>
                     </div>
                   </div>
@@ -69,7 +57,7 @@ const SignleProduct = () => {
                         aria-current="page"
                       >
                         {" "}
-                        {productItem.name}
+                        {categories[category][Number(id)].name}
                       </a>
                     </div>
                   </div>
@@ -84,8 +72,8 @@ const SignleProduct = () => {
                     <div className="max-w-xl overflow-hidden rounded-lg">
                       <img
                         className="h-[600px] w-[600px] object-contain"
-                        src={productItem.imageUrl}
-                        alt={productItem.name}
+                        src={categories[category][Number(id)].imageUrl}
+                        alt={categories[category][Number(id)].name}
                       />
                     </div>
                   </div>
@@ -98,8 +86,8 @@ const SignleProduct = () => {
                       >
                         <img
                           className="h-full w-full object-cover"
-                          src={productItem.imageUrl}
-                          alt={productItem.name}
+                          src={categories[category][Number(id)].imageUrl}
+                          alt={categories[category][Number(id)].name}
                         />
                       </button>
                       <button
@@ -108,8 +96,8 @@ const SignleProduct = () => {
                       >
                         <img
                           className="h-full w-full object-cover"
-                          src={productItem.imageUrl}
-                          alt={productItem.name}
+                          src={categories[category][Number(id)].imageUrl}
+                          alt={categories[category][Number(id)].name}
                         />
                       </button>
                       <button
@@ -118,8 +106,8 @@ const SignleProduct = () => {
                       >
                         <img
                           className="h-full w-full object-cover"
-                          src={productItem.imageUrl}
-                          alt={productItem.name}
+                          src={categories[category][Number(id)].imageUrl}
+                          alt={categories[category][Number(id)].name}
                         />
                       </button>
                     </div>
@@ -129,7 +117,7 @@ const SignleProduct = () => {
 
               <div className="lg:col-span-2 lg:row-span-2 lg:row-end-2">
                 <h1 className="sm: text-2xl font-bold text-gray-900 sm:text-3xl">
-                  {productItem.name}
+                  {categories[category][Number(id)].name}
                 </h1>
 
                 <div className="mt-5 flex items-center">
@@ -274,14 +262,18 @@ const SignleProduct = () => {
 
                 <div className="mt-10 flex flex-col items-center justify-between space-y-4 border-t border-b py-4 sm:flex-row sm:space-y-0">
                   <div className="flex items-end">
-                    <h1 className="text-3xl font-bold">${productItem.price}</h1>
+                    <h1 className="text-3xl font-bold">
+                      ${categories[category][Number(id)].price}
+                    </h1>
                     {/* <span className="text-base"></span> */}
                   </div>
 
                   <button
                     type="button"
                     className="ml-5 inline-flex items-center justify-center rounded-md border-2 border-transparent bg-gray-900 bg-none px-12 py-3 text-center text-base font-bold text-white transition-all duration-200 ease-in-out focus:shadow hover:bg-gray-800"
-                    onClick={() => additemsToCart(productItem)}
+                    onClick={() =>
+                      additemsToCart(categories[category][Number(id)])
+                    }
                   >
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
