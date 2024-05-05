@@ -3,6 +3,7 @@ import { Outlet } from "react-router-dom";
 import Sponsors from "../../components/sponsor/Sponsors";
 import { useContext, useEffect } from "react";
 import { CartContext } from "../../contex/Cart.Context";
+import LoadSpinners from "../../components/Loaders/LoadSpinners";
 const Home = () => {
   const { setIsCartOpen } = useContext(CartContext);
   useEffect(() => {
@@ -13,6 +14,7 @@ const Home = () => {
       <Outlet />
       <Category />
       <Sponsors />
+      <LoadSpinners />
     </>
   );
 };
