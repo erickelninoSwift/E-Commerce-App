@@ -9,10 +9,7 @@ const Product = ({ itemDetails, currentCategory }) => {
   const navigate = useNavigate();
 
   return (
-    <article
-      className="relative"
-      onClick={() => navigate(`/singleproduct/${currentCategory}/${id}`)}
-    >
+    <article className="relative">
       <a
         className="relative mx-3 mt-3 flex h-60 overflow-hidden rounded-xl"
         href="#"
@@ -22,6 +19,7 @@ const Product = ({ itemDetails, currentCategory }) => {
           style={{ height: "100%", width: "100%", objectFit: "cover" }}
           src={imageUrl}
           alt="product image"
+          onClick={() => navigate(`/singleproduct/${currentCategory}/${id}`)}
         />
         <span className="absolute top-0 left-0 m-2 rounded-full bg-black px-2 text-center text-sm font-medium text-white">
           39% OFF
@@ -44,10 +42,6 @@ const Product = ({ itemDetails, currentCategory }) => {
             <Rating />
             <Rating />
             <Rating />
-            {/* 
-            <span className="mr-2 ml-3 rounded bg-yellow-200 px-2.5 py-0.5 text-xs font-semibold">
-              {rating}
-            </span> */}
           </div>
         </div>
         <a

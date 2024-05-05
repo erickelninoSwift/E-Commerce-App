@@ -25,10 +25,7 @@ const Category = () => {
         <div className="mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8">
           <div className="">
             <h2 className="text-2xl ml-3 font-bold sm:text-3xl">
-              <span
-                style={{ cursor: "pointer" }}
-                onClick={() => console.log("lets get it")}
-              >
+              <span style={{ cursor: "pointer" }}>
                 {" "}
                 {category.toUpperCase()}
               </span>
