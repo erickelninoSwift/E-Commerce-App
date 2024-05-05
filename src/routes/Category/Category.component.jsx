@@ -18,7 +18,7 @@ const Category = () => {
       return categories[category];
     });
   }, [categories, category]);
-  console.log(products);
+
   return (
     <>
       <section className="bg-white py-10 text-gray-700 sm:py-16 lg:py-10">
@@ -37,7 +37,13 @@ const Category = () => {
           <div className="mt-10 grid grid-cols-2 gap-6 lg:mt-16 lg:grid-cols-4 lg:gap-4">
             {products &&
               products.map((myproduct) => {
-                return <Product key={myproduct.id} itemDetails={myproduct} />;
+                return (
+                  <Product
+                    key={myproduct.id}
+                    currentCategory={category}
+                    itemDetails={myproduct}
+                  />
+                );
               })}
           </div>
         </div>

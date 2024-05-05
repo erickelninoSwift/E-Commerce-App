@@ -1,11 +1,13 @@
 import { useContext, useEffect, useState } from "react";
 import { UserContext } from "../../contex/UserContext";
 import { CategoriesContext } from "../../contex/CategoriesContext";
+import { CartContext } from "../../contex/Cart.Context";
 import { useParams } from "react-router-dom";
 import Sponsors from "../sponsor/Sponsors";
 const SignleProduct = () => {
   const [productItem, setProductItem] = useState({});
   const [currentCategory, setCurrentCategory] = useState("");
+  const { additemsToCart } = useContext(CartContext);
   const { categories } = useContext(CategoriesContext);
   const { id, category } = useParams();
 
@@ -274,6 +276,7 @@ const SignleProduct = () => {
                 <button
                   type="button"
                   className="ml-5 inline-flex items-center justify-center rounded-md border-2 border-transparent bg-gray-900 bg-none px-12 py-3 text-center text-base font-bold text-white transition-all duration-200 ease-in-out focus:shadow hover:bg-gray-800"
+                  onClick={() => additemsToCart(productItem)}
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
