@@ -1,5 +1,5 @@
 import { createContext, useEffect, useState } from "react";
-
+// import { legacy_createStore as createStore} from 'redux'
 export const CartContext = createContext({
   isCartOpen: false,
   setIsCartOpen: () => {},
