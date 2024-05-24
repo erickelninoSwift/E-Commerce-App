@@ -19,6 +19,7 @@ const userReducer = (state, action) => {
   switch (type) {
     case STATE_TYPE.SET_CURRNT_USER:
       return {
+        ...state,
         currentUser: payload,
       };
     default:
@@ -29,8 +30,7 @@ const userReducer = (state, action) => {
 export const UserProvider = ({ children }) => {
   const [state, dispatch] = useReducer(userReducer, INITIAL_STATE);
   const { currentUser } = state;
-  console.log(currentUser);
-  console.log(dispatch);
+
   const setCurrentUser = (user) => {
     dispatch({ type: STATE_TYPE.SET_CURRNT_USER, payload: user });
   };
