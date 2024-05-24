@@ -1,4 +1,4 @@
-import { createContext, useEffect, useState } from "react";
+import { createContext, useEffect, useState, useReducer } from "react";
 // import { legacy_createStore as createStore} from 'redux'
 export const CartContext = createContext({
   isCartOpen: false,
@@ -10,6 +10,20 @@ export const CartContext = createContext({
   totalQuantity: 0,
   CurrentTotalAmount: 0,
 });
+
+const INITIAL_CART_STATE = {
+  isCartOpen: false,
+  cartItems: [],
+  totalQuantity: 0,
+  CurrentTotalAmount: 0,
+};
+
+const cartReducer = (state, action) => {
+  const { type, payload } = action;
+
+  switch (type) {
+  }
+};
 
 const checkproductExist = (cartItems, productToAdd) => {
   const check = cartItems.find((data) => data.id === productToAdd.id);
